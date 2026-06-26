@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research — DCALab</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- Page Hero ---- */
+    .page-hero {
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .page-hero h1 { font-size: clamp(32px, 4vw, 52px); margin-bottom: 12px; }
+    .page-hero p { font-size: 17px; color: var(--gray2); max-width: 560px; }
+
+    /* ---- Projects ---- */
+    .projects { background: var(--bg3); }
+
+    .projects__list { display: flex; flex-direction: column; gap: 24px; }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0;
+      align-items: start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .project-card:hover { border-color: rgba(79,125,255,0.3); }
+
+    .project-card__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 160px;
+      padding: 0 24px;
+    }
+    .project-card__icon svg {
+      width: 48px; height: 48px;
+      color: var(--accent2);
+      opacity: 0.7;
+    }
+
+    .project-card__left {
+      min-width: 0;
+      padding: 28px 0;
+    }
+
+    .project-card__top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .project-status {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #5bc97a;
+    }
+
+    .project-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .project-card__desc {
+      font-size: 13.5px;
+      color: var(--gray2);
+      line-height: 1.7;
+    }
+
+    .project-card__right {
+      flex-shrink: 0;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 28px 28px 28px 0;
+    }
+    .project-card__budget-label {
+      font-size: 10.5px;
+      color: var(--gray3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .project-card__budget {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .project-card__period {
+      font-size: 12.5px;
+      color: var(--gray3);
+    }
+  </style>
+</head>
+<body class="page-body">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-main">DCAL</span>
+        <span class="nav__logo-sub">Jeju National University</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="research.html" class="active">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="people.html">People</a></li>
+        <li><a href="index.html#contact" class="nav__cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO (편집 가이드: 여기서 페이지 제목과 설명을 수정하세요) -->
+  <div class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Projects</p>
+      <h1>정부 과제</h1>
+      <p>현재 진행 중인 정부 지원 연구 프로젝트입니다.</p>
+    </div>
+  </div>
+
+  <!-- PROJECTS (편집 가이드: 아래 프로젝트 카드를 수정/추가하세요)
+
+       프로젝트 추가 방법:
+       1. <div class="project-card">...</div> 전체 블록을 복사
+       2. 제목, 설명, 예산, 기간을 수정
+       3. 상태 변경: "진행 중" → "완료" 등 (project-status 영역)
+
+  -->
+  <section class="projects">
+    <div class="container">
+      <div class="projects__list">
+
+        <!-- 벡터 DB -->
+        <div class="project-card">
+          <div class="project-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+            </svg>
+          </div>
+          <div class="project-card__left">
+            <div class="project-card__top"><span class="project-status">진행 중</span></div>
+            <h3>초거대 AI 모델의 장기 기억 저장을 위한 벡터 DB 개발</h3>
+            <p class="project-card__desc">최고 성능 오픈소스 벡터 DB w/ 정확도 QoS 보장, Multi Modal 최적화 End Product 개발. 세계 최고 성능의 정확도 보장 오픈소스 In-Memory 및 Disk 기반 벡터 DB 구현을 목표로 합니다.</p>
+          </div>
+          <div class="project-card__right">
+            <span class="project-card__budget-label">총 예산</span>
+            <span class="project-card__budget">20.57억</span>
+            <span class="project-card__period">2024.06 – 2027.12</span>
+          </div>
+        </div>
+
+        <!-- AI 교육 -->
+        <div class="project-card">
+          <div class="project-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <div class="project-card__left">
+            <div class="project-card__top"><span class="project-status">진행 중</span></div>
+            <h3>초중등 대상 AI 교육을 위한 CT-EL기반 교육과정 및 교수학습방법 개발</h3>
+            <p class="project-card__desc">초·중등 대상 4P전략에 기반한 AI 교육체계 및 교육과정 개발. 초등학교부터 고등학교까지 학교급 간 연계성을 갖는 나선형 AI 교육체계 및 수준별·교육단계별 맞춤형 교육을 목표로 합니다.</p>
+          </div>
+          <div class="project-card__right">
+            <span class="project-card__budget-label">총 예산</span>
+            <span class="project-card__budget">3.25억</span>
+            <span class="project-card__period">2021.08 – 2027.08</span>
+          </div>
+        </div>
+
+        <!-- 기초과학연구소 -->
+        <div class="project-card">
+          <div class="project-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3h6v11l3 7H6l3-7V3z"/><path d="M6 14h12"/>
+            </svg>
+          </div>
+          <div class="project-card__left">
+            <div class="project-card__top"><span class="project-status">진행 중</span></div>
+            <h3>기초과학연구소</h3>
+            <p class="project-card__desc">연결지성 기반 자연과학 융합 연구를 통해 창의적이고 도전적인 연구 주제를 발굴·기획·지원. 에너지, 환경, 바이오헬스, 데이터 분야에서 신진연구인력 양성 및 글로벌 네트워크 강화를 추구합니다.</p>
+          </div>
+          <div class="project-card__right">
+            <span class="project-card__budget-label">총 예산</span>
+            <span class="project-card__budget">12.98억</span>
+            <span class="project-card__period">2021.05 – 2030.05</span>
+          </div>
+        </div>
+
+        <!-- 제주대 기초과학연구소 -->
+        <div class="project-card">
+          <div class="project-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V12"/><path d="M12 12C12 7 7 4 3 6c4 1 7 4 9 6z"/><path d="M12 12c0-5 5-8 9-6-4 1-7 4-9 6z"/><path d="M12 12c0 4-3 7-6 8 2-3 4-6 6-8z"/><path d="M12 12c0 4 3 7 6 8-2-3-4-6-6-8z"/>
+            </svg>
+          </div>
+          <div class="project-card__left">
+            <div class="project-card__top"><span class="project-status">진행 중</span></div>
+            <h3>제주대학교 기초과학연구소</h3>
+            <p class="project-card__desc">청정 제주의 자연환경과 생물권 보전을 기반으로 기초과학 연구와 학습정보 융복합을 추진합니다. 지역 특성을 살린 지속 가능한 연구 인프라 구축을 목표로 합니다.</p>
+          </div>
+          <div class="project-card__right">
+            <span class="project-card__budget-label">총 예산</span>
+            <span class="project-card__budget">13.98억</span>
+            <span class="project-card__period">2019.05 – 2028.02</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__brand-name">DCAL</div>
+        <div class="footer__brand-sub">Data-Centric AI Lab · Jeju National University</div>
+        <address class="footer__address" style="font-style:normal;">
+          No. C109-1, 3rd College of Engineering<br />
+          102, Jejudaehak-ro, Jeju-si, Jeju-do, Republic of Korea (63243)<br />
+          Email: <a href="mailto:gmkim@jejunu.ac.kr" style="color:var(--accent2);">gmkim@jejunu.ac.kr</a>
+        </address>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Navigation</p>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="people.html">People</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Research</p>
+        <ul>
+          <li><a href="research.html">Projects</a></li>
+          <li><a href="publications.html">Papers</a></li>
+          <li><a href="people.html#professor">Professor</a></li>
+          <li><a href="people.html#team">Team</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>Copyright © 2025 Data-Centric AI Lab, Jeju National University. All Rights Reserved.</span>
+      <span>Dept. of Artificial Intelligence</span>
+    </div>
+  </footer>
+
+  <script src="scroll.js"></script>
+</body>
+</html>

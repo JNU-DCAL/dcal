@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications — DCA Lab</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    .page-hero {
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .page-hero h1 { font-size: clamp(32px, 4vw, 52px); margin-bottom: 12px; }
+    .page-hero p  { font-size: 17px; color: var(--gray2); max-width: 560px; }
+
+    .filter-bar {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 48px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-size: 13px; font-weight: 600; padding: 7px 16px;
+      border-radius: 6px; border: 1px solid var(--border);
+      background: transparent; color: var(--gray2);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn:hover { color: var(--white); border-color: var(--gray2); }
+    .filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
+
+    .pub-year-section { margin-bottom: 56px; }
+    .pub-year-section:last-child { margin-bottom: 0; }
+
+    .year-heading {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gray3);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .year-heading::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .pub-list { display: flex; flex-direction: column; }
+
+    .pub-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pub-item:first-child { border-top: 1px solid var(--border); }
+
+    .pub-item__venue-row {
+      display: flex; align-items: center; gap: 6px;
+      margin-bottom: 8px;
+    }
+    .pub-venue {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .pub-venue--conf     { color: var(--accent2); }
+    .pub-venue--journal  { color: #5bc97a; }
+    .pub-venue--workshop { color: #f5b942; }
+    .pub-venue-sep  { color: var(--gray3); font-size: 11px; }
+    .pub-venue-name { font-size: 12px; color: var(--gray3); }
+
+    .pub-item__title {
+      font-size: 15.5px; font-weight: 600;
+      color: var(--white); line-height: 1.45; margin-bottom: 8px;
+    }
+    .pub-item__authors { font-size: 13px; color: var(--gray2); }
+    .pub-item__authors strong { color: var(--gray1); font-weight: 600; }
+
+    .pub-item__links {
+      display: flex; gap: 12px; align-items: center;
+      flex-shrink: 0; padding-top: 28px;
+    }
+    .pub-link {
+      font-size: 12px; font-weight: 600;
+      color: var(--gray3); transition: color 0.2s; white-space: nowrap;
+    }
+    .pub-link:hover { color: var(--accent2); }
+    .pub-link--paper { color: var(--accent2); }
+  </style>
+</head>
+<body class="page-body">
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-main">DCAL</span>
+        <span class="nav__logo-sub">Jeju National University</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html" class="active">Publications</a></li>
+        <li><a href="people.html">People</a></li>
+        <li><a href="index.html#contact" class="nav__cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Research Output</p>
+      <h1>Publications</h1>
+      <p>학술지·컨퍼런스·워크샵에 발표된 DCAL의 연구 결과물입니다.</p>
+    </div>
+  </div>
+
+  <section style="background: var(--bg3);">
+    <div class="container">
+
+      <div class="filter-bar anim">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Conference</button>
+        <button class="filter-btn">Journal</button>
+        <button class="filter-btn">Workshop</button>
+      </div>
+
+      <!-- ===== 2024년 SAMPLE 논문 =====
+
+           🔧 편집 방법:
+           1. 연도를 변경하려면 <div class="year-heading">2024</div>의 2024을 수정
+           2. 논문을 추가하려면 아래 <div class="pub-item">...</div> 블록 전체를 복사하여 붙여넣기
+           3. 필드별 수정:
+              - pub-venue--conf: 컨퍼런스 (파란색)
+              - pub-venue--journal: 저널 (녹색)
+              - pub-venue--workshop: 워크샵 (황색)
+              - 저자명 중 <strong>태그</strong>로 감싼 저자는 굵게 표시됨
+              - 링크 href="#"를 실제 URL로 변경
+
+           ===== END OF GUIDE ===== -->
+
+      <div class="pub-year-section anim">
+        <div class="year-heading">2024</div>
+        <div class="pub-list">
+
+          <!-- ⬇️ 아래 전체 블록을 복사하여 새로운 논문을 추가하세요 ⬇️ -->
+          <div class="pub-item">
+            <div class="pub-item__main">
+              <div class="pub-item__venue-row">
+                <!-- Conference | Journal | Workshop 중 선택 -->
+                <span class="pub-venue pub-venue--conf">Conference</span>
+                <span class="pub-venue-sep">·</span>
+                <!-- 학회/저널 이름 -->
+                <span class="pub-venue-name">NeurIPS 2024</span>
+              </div>
+              <!-- 논문 제목 -->
+              <div class="pub-item__title">DCAL-Bench: A Benchmark for Evaluating Data-Centric LLM Pipelines</div>
+              <!-- 저자 (첫저자는 <strong> 태그로 감싸세요) -->
+              <div class="pub-item__authors"><strong>Gildong Hong</strong>, Youngjae Kim, Soyeon Park</div>
+            </div>
+            <div class="pub-item__links">
+              <!-- 링크 추가: href="#"를 실제 URL로 변경 -->
+              <a href="#" class="pub-link pub-link--paper">[Paper]</a>
+              <a href="#" class="pub-link">[Code]</a>
+              <!-- 필요한 링크만 유지하세요: [Paper], [Code], [Demo], [Poster] 등 -->
+            </div>
+          </div>
+          <!-- ⬆️ 위 블록을 복사하여 새 논문을 추가하세요 ⬆️ -->
+
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__brand-name">DCAL</div>
+        <div class="footer__brand-sub">Data-Centric AI Lab · Jeju National University</div>
+        <address class="footer__address" style="font-style:normal;">
+          No. C109-1, 3rd College of Engineering<br />
+          102, Jejudaehak-ro, Jeju-si, Jeju-do, Republic of Korea (63243)<br />
+          Email: <a href="mailto:gmkim@jejunu.ac.kr" style="color:var(--accent2);">gmkim@jejunu.ac.kr</a>
+        </address>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Navigation</p>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="people.html">People</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Research</p>
+        <ul>
+          <li><a href="research.html">Projects</a></li>
+          <li><a href="publications.html">Papers</a></li>
+          <li><a href="people.html#professor">Professor</a></li>
+          <li><a href="people.html#team">Team</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>Copyright © 2025 Data-Centric AI Lab, Jeju National University. All Rights Reserved.</span>
+      <span>Dept. of Artificial Intelligence</span>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+  <script src="scroll.js"></script>
+</body>
+</html>

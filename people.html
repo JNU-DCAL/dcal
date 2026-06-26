@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>People — DCA Lab</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- Page Hero ---- */
+    .page-hero {
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .page-hero h1 { font-size: clamp(32px, 4vw, 52px); margin-bottom: 12px; }
+    .page-hero p { font-size: 17px; color: var(--gray2); max-width: 560px; }
+
+    /* ---- Professor ---- */
+    .professor { background: var(--bg); }
+
+    .prof-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px;
+    }
+
+    .prof-card__photo {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .prof-card__photo img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+
+    .prof-card__info {}
+    .prof-card__name {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .prof-card__title {
+      font-size: 15px;
+      color: var(--accent2);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .prof-card__affil {
+      font-size: 14px;
+      color: var(--gray2);
+      margin-bottom: 28px;
+    }
+
+    .prof-card__bio {
+      font-size: 15px;
+      color: var(--gray2);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .prof-card__meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .prof-meta-item {}
+    .prof-meta-item__label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray3);
+      margin-bottom: 6px;
+    }
+    .prof-meta-item__value {
+      font-size: 14px;
+      color: var(--gray1);
+      line-height: 1.5;
+    }
+
+    .prof-card__interests {}
+    .prof-card__interests-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray3);
+      margin-bottom: 10px;
+    }
+    .prof-card__interests-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .prof-card__links {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* ---- Team ---- */
+    .team { background: var(--bg2); }
+
+    .team__section { margin-bottom: 56px; }
+    .team__section:last-child { margin-bottom: 0; }
+
+    .team__section-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray3);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .team__section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .team__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .member-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .member-card:hover {
+      border-color: rgba(79,125,255,0.35);
+      transform: translateY(-2px);
+    }
+
+    .member-card__avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      margin: 0 auto 16px;
+      background: var(--bg3);
+    }
+    .member-card__avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .member-card__name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .member-card__name-ko {
+      font-size: 13px;
+      color: var(--gray3);
+      margin-bottom: 8px;
+    }
+    .member-card__role {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: rgba(79,125,255,0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(79,125,255,0.2);
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .member-card__interest {
+      font-size: 12.5px;
+      color: var(--gray2);
+      line-height: 1.5;
+    }
+
+    /* Alumni */
+    .alumni-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .alumni-table thead tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .alumni-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray3);
+      padding: 12px 16px;
+    }
+    .alumni-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .alumni-table tbody tr:last-child { border-bottom: none; }
+    .alumni-table tbody tr:hover { background: var(--card); }
+    .alumni-table td {
+      padding: 14px 16px;
+      font-size: 14px;
+      color: var(--gray1);
+    }
+    .alumni-table td:first-child { color: var(--white); font-weight: 600; }
+    .alumni-table td:last-child { color: var(--gray2); }
+  </style>
+</head>
+<body class="page-body">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-main">DCAL</span>
+        <span class="nav__logo-sub">Jeju National University</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="people.html" class="active">People</a></li>
+        <li><a href="index.html#contact" class="nav__cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Our Team</p>
+      <h1>People</h1>
+      <p>DCAL의 연구를 함께 만들어가는 사람들입니다.</p>
+    </div>
+  </div>
+
+  <!-- PROFESSOR -->
+  <section class="professor" id="professor">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Principal Investigator</p>
+        <h2>지도 교수</h2>
+      </div>
+      <div class="prof-card anim">
+        <div class="prof-card__photo">
+          <img src="images/professor.jpg" alt="김경민 교수" />
+        </div>
+        <div class="prof-card__info">
+          <div class="prof-card__name">김경민 (Gyeong-Min Kim)</div>
+          <div class="prof-card__title">조교수 · Assistant Professor</div>
+          <div class="prof-card__affil">제주대학교 인공지능학과 · Department of Artificial Intelligence, Jeju National University</div>
+
+          <p class="prof-card__bio">
+            김경민 교수는 데이터 중심 AI(Data-Centric AI)를 세부 전공으로, 대규모 언어 모델 및 생성형 AI 연구를 이끌고 있습니다.
+            고려대학교 Human-Inspired AI 연구원에서 연구 활동을 수행하였으며,
+            사물인터넷 혁신융합대학사업 제주대사업단 교육운영위원 및 지능소프트웨어교육연구소 운영위원으로 활동하고 있습니다.
+            Physical AI, Sovereign AI 등 실용적 AI 시스템 개발과 산학 협력을 통해 지역 AI 생태계에 기여하고 있습니다.
+          </p>
+
+          <div class="prof-card__meta-grid">
+            <div class="prof-meta-item">
+              <div class="prof-meta-item__label">Email</div>
+              <div class="prof-meta-item__value">
+                <a href="mailto:gmkim@jejunu.ac.kr" style="color:var(--accent2);">gmkim@jejunu.ac.kr</a>
+              </div>
+            </div>
+            <div class="prof-meta-item">
+              <div class="prof-meta-item__label">Office</div>
+              <div class="prof-meta-item__value">C109, 3rd College of Engineering</div>
+            </div>
+            <div class="prof-meta-item">
+              <div class="prof-meta-item__label">Phone</div>
+              <div class="prof-meta-item__value">064-754-3784</div>
+            </div>
+            <div class="prof-meta-item">
+              <div class="prof-meta-item__label">Lab</div>
+              <div class="prof-meta-item__value">
+                <a href="https://sites.google.com/view/dcalab" target="_blank" style="color:var(--accent2);">DCA Lab</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="prof-card__interests">
+            <div class="prof-card__interests-label">Research Interests</div>
+            <div class="prof-card__interests-tags">
+              <span class="tag">Data-Centric AI</span>
+              <span class="tag">Large Language Models</span>
+              <span class="tag">Generative AI</span>
+              <span class="tag">Physical AI</span>
+              <span class="tag">Sovereign AI</span>
+              <span class="tag">NLP</span>
+            </div>
+          </div>
+
+          <div class="prof-card__links">
+            <a href="mailto:gmkim@jejunu.ac.kr" class="btn btn-primary" style="font-size:13px; padding:9px 18px;">이메일 보내기</a>
+            <a href="https://scholar.google.com/citations?user=fsIXBtMAAAAJ&hl=ko" target="_blank" class="btn btn-outline" style="font-size:13px; padding:9px 18px;">Google Scholar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM (편집 가이드: 팀원을 추가/삭제하려면 아래 member-card 블록을 복사/삭제하세요) -->
+  <section class="team" id="team">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Current Members</p>
+        <h2>팀원 소개</h2>
+      </div>
+
+      <!-- Graduate Students -->
+      <div class="team__section">
+        <div class="team__section-title">Graduate Students</div>
+        <div class="team__grid anim-stagger">
+          <div class="member-card">
+            <div class="member-card__avatar"><img src="images/파이잔.jpg" alt="Syed Faizan" onerror="this.src='https://ui-avatars.com/api/?name=Syed+Faizan&background=1a2340&color=7eb3ff&size=80&bold=true&font-size=0.45'" /></div>
+            <div class="member-card__name">Syed Faizan Hussain Shah</div>
+            <div class="member-card__name-ko">2025.09 ~</div>
+            <span class="member-card__role">Graduate Student</span>
+            <p class="member-card__interest"><a href="mailto:faizanbukhari8815@gmail.com" style="color:var(--gray2); text-decoration:none;">faizanbukhari8815@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Undergraduate Researchers -->
+      <div class="team__section">
+        <div class="team__section-title">Undergraduate Researchers</div>
+        <div class="team__grid anim-stagger">
+          <div class="member-card">
+            <div class="member-card__avatar"><img src="images/전승훈.jpg" alt="전승훈" onerror="this.src='https://ui-avatars.com/api/?name=Seunghoon+Jeon&background=1a2340&color=7eb3ff&size=80&bold=true&font-size=0.45'" /></div>
+            <div class="member-card__name">Jeon, Seunghoon</div>
+            <div class="member-card__name-ko">2025.03 ~</div>
+            <span class="member-card__role">Undergrad Researcher</span>
+            <p class="member-card__interest"><a href="mailto:03080995@gmail.com" style="color:var(--gray2); text-decoration:none;">03080995@gmail.com</a></p>
+          </div>
+          <div class="member-card">
+            <div class="member-card__avatar"><img src="images/강이의.jpg" alt="강이의" onerror="this.src='https://ui-avatars.com/api/?name=Eiyui+Kang&background=1a2340&color=7eb3ff&size=80&bold=true&font-size=0.45'" /></div>
+            <div class="member-card__name">Kang, Eiyui</div>
+            <div class="member-card__name-ko">2025.07 ~</div>
+            <span class="member-card__role">Undergrad Researcher</span>
+            <p class="member-card__interest"><a href="mailto:kangeiyui512@gmail.com" style="color:var(--gray2); text-decoration:none;">kangeiyui512@gmail.com</a></p>
+          </div>
+          <div class="member-card">
+            <div class="member-card__avatar"><img src="images/이태이.jpg" alt="이태이" onerror="this.src='https://ui-avatars.com/api/?name=Taei+Lee&background=1a2340&color=7eb3ff&size=80&bold=true&font-size=0.45'" /></div>
+            <div class="member-card__name">Lee, Taei</div>
+            <div class="member-card__name-ko">2026.02 ~</div>
+            <span class="member-card__role">Undergrad Researcher</span>
+            <p class="member-card__interest"><a href="mailto:iteai0310@gmail.com" style="color:var(--gray2); text-decoration:none;">iteai0310@gmail.com</a></p>
+          </div>
+          <div class="member-card">
+            <div class="member-card__avatar"><img src="images/박정민.jpg" alt="박정민" onerror="this.src='https://ui-avatars.com/api/?name=Jungmin+Park&background=1a2340&color=7eb3ff&size=80&bold=true&font-size=0.45'" /></div>
+            <div class="member-card__name">Park, Jungmin</div>
+            <div class="member-card__name-ko">박정민</div>
+            <span class="member-card__role">Undergrad Researcher</span>
+            <p class="member-card__interest"><a href="mailto:jaydenpark9497@gmail.com" style="color:var(--gray2); text-decoration:none;">jaydenpark9497@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RECRUITING CTA -->
+  <section style="background: var(--bg); padding: 80px 0; border-top: 1px solid var(--border);">
+    <div class="container">
+      <div style="background: linear-gradient(135deg, rgba(79,125,255,0.08), rgba(79,125,255,0.03)); border: 1px solid rgba(79,125,255,0.2); border-radius: 16px; padding: 56px; display: flex; align-items: center; justify-content: space-between; gap: 40px;">
+        <div>
+          <p class="eyebrow">Join Us</p>
+          <h2 style="font-size: 26px; margin-bottom: 12px;">DCAL에서 함께 연구하세요</h2>
+          <p style="color: var(--gray2); font-size: 15px; max-width: 460px;">
+            LLM, Physical AI, Generative AI에 열정을 가진 석·박사 연구원 및 포닥을 모집합니다.
+            의욕 있는 연구자라면 언제든 이메일로 연락 주세요.
+          </p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-shrink: 0;">
+          <a href="mailto:gmkim@jejunu.ac.kr" class="btn btn-primary">이메일 문의</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__brand-name">DCAL</div>
+        <div class="footer__brand-sub">Data-Centric AI Lab · Jeju National University</div>
+        <address class="footer__address" style="font-style:normal;">
+          No. C109-1, 3rd College of Engineering<br />
+          102, Jejudaehak-ro, Jeju-si, Jeju-do, Republic of Korea (63243)<br />
+          Email: <a href="mailto:gmkim@jejunu.ac.kr" style="color:var(--accent2);">gmkim@jejunu.ac.kr</a>
+        </address>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Navigation</p>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="people.html">People</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Research</p>
+        <ul>
+          <li><a href="research.html">Projects</a></li>
+          <li><a href="publications.html">Papers</a></li>
+          <li><a href="people.html#professor">Professor</a></li>
+          <li><a href="people.html#team">Team</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>Copyright © 2025 Data-Centric AI Lab, Jeju National University. All Rights Reserved.</span>
+      <span>Dept. of Artificial Intelligence</span>
+    </div>
+</div>
+  </footer>
+
+  <script src="scroll.js"></script>
+</body>
+</html>
