@@ -9,6 +9,73 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== Home hero (full-bleed image) ===== */
+    /* LIGHT theme: bright photo · paper-tinted scrim */
+    .home-hero{
+      --hero-rgb:251,250,247;
+      --hero-img:url('https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1920&q=80');
+      position:relative;min-height:62vh;display:flex;align-items:center;
+      padding:120px 0 106px;
+      background:var(--bg) var(--hero-img) center center/cover no-repeat;
+    }
+    /* DARK theme: dark photo · dark scrim */
+    :root[data-theme="dark"] .home-hero{
+      --hero-rgb:13,14,18;
+      --hero-img:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=80');
+    }
+    .home-hero::after{content:'';position:absolute;inset:0;
+      background:linear-gradient(100deg, rgba(var(--hero-rgb),0.86) 0%, rgba(var(--hero-rgb),0.66) 48%, rgba(var(--hero-rgb),0.40) 100%);}
+    .home-hero > .container{position:relative;z-index:1;width:100%;}
+    .home-hero .eyebrow{color:var(--accent);margin-bottom:22px;}
+    .home-hero h1{color:var(--ink);font-size:clamp(42px,6vw,74px);font-weight:800;letter-spacing:-0.04em;line-height:1.02;margin-bottom:22px;max-width:15ch;}
+    .home-hero h1 span{color:var(--accent);}
+    .home-hero p{color:var(--muted);font-size:19px;max-width:46ch;line-height:1.6;margin-bottom:32px;}
+    .home-hero__meta{display:flex;flex-wrap:wrap;gap:26px;margin-bottom:34px;font-family:var(--mono);font-size:12px;color:var(--muted);}
+    .home-hero__meta b{color:var(--ink);font-weight:500;}
+    .home-hero__meta .k{color:var(--faint);}
+
+    /* ===== Stats strip ===== */
+    .stats{background:var(--bg-alt);border-bottom:1px solid var(--line);}
+    .stats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:34px 0;}
+    .stat__n{font-family:var(--mono);font-size:30px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1;}
+    .stat__n span{color:var(--accent);}
+    .stat__l{font-size:12px;color:var(--muted);margin-top:9px;letter-spacing:0.02em;}
+
+    /* ===== Home sections ===== */
+    .home-sec{padding:84px 0;border-bottom:1px solid var(--line);}
+    .home-sec--alt{background:var(--bg-alt);}
+    .home-head{max-width:60ch;margin-bottom:40px;}
+    .home-head .eyebrow{margin-bottom:12px;}
+    .home-head h2{font-size:clamp(27px,3.2vw,36px);margin-bottom:12px;}
+    .home-head p{color:var(--muted);font-size:16px;line-height:1.6;}
+
+    /* ===== About (text + image) ===== */
+    .about-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;}
+    .about-grid h2{font-size:clamp(26px,3vw,34px);margin-bottom:20px;}
+    .about-grid .eyebrow{margin-bottom:14px;}
+    .about-grid p{color:var(--muted);line-height:1.8;margin-bottom:14px;}
+    .about-grid p:last-child{margin-bottom:0;}
+    .about-grid b{color:var(--ink);}
+    .about-img{border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--bg-alt);}
+    .about-img img{width:100%;height:100%;object-fit:cover;display:block;}
+
+    /* ===== Research cards ===== */
+    .rcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(256px,1fr));gap:18px;}
+    .rcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);display:flex;flex-direction:column;transition:transform .2s,border-color .2s,box-shadow .2s;}
+    .rcard:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 16px 40px rgba(0,0,0,0.10);}
+    .rcard__imgwrap{aspect-ratio:16/10;background:var(--bg-alt);overflow:hidden;}
+    .rcard__imgwrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease;}
+    .rcard:hover .rcard__imgwrap img{transform:scale(1.05);}
+    .rcard__body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:10px;flex:1;}
+    .rcard__num{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.04em;}
+    .rcard__title{font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-0.01em;line-height:1.3;}
+    .rcard__desc{font-size:13px;color:var(--muted);line-height:1.6;flex:1;}
+    .rcard__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
+
+    @media (max-width:800px){ .about-grid{grid-template-columns:1fr;gap:30px;} }
+    @media (max-width:600px){ .stats__grid{grid-template-columns:1fr 1fr;gap:22px;} .home-hero{min-height:auto;padding:100px 0 80px;} }
+  </style>
 </head>
 <body class="page-body">
 
@@ -34,12 +101,12 @@
   </nav>
 
   <!-- HERO -->
-  <header class="hero">
+  <header class="home-hero">
     <div class="container">
       <p class="eyebrow">Data-Centric AI Lab · Dept. of Artificial Intelligence</p>
-      <h1>데이터 중심 <span>AI 연구실</span></h1>
+      <h1>데이터 중심<br /><span>AI 연구실</span></h1>
       <p>대규모 언어 모델, Physical AI, Sovereign AI를 데이터 중심 관점에서 연구합니다 — 기초 이론부터 실용적이고 효율적인 시스템까지.</p>
-      <div class="hero__meta">
+      <div class="home-hero__meta">
         <span><span class="k">Institution</span>&nbsp; <b>Jeju National University</b></span>
         <span><span class="k">Location</span>&nbsp; <b>Jeju, Republic of Korea</b></span>
         <span><span class="k">PI</span>&nbsp; <b>Prof. Gyeong-Min Kim</b></span>
@@ -51,6 +118,18 @@
     </div>
   </header>
 
+  <!-- STATS -->
+  <div class="stats">
+    <div class="container">
+      <div class="stats__grid">
+        <div class="stat"><div class="stat__n">04</div><div class="stat__l">Research areas</div></div>
+        <div class="stat"><div class="stat__n">04</div><div class="stat__l">Funded projects</div></div>
+        <div class="stat"><div class="stat__n">05</div><div class="stat__l">Members</div></div>
+        <div class="stat"><div class="stat__n">2024<span>+</span></div><div class="stat__l">Established</div></div>
+      </div>
+    </div>
+  </div>
+
   <!-- NOTICE -->
   <div class="notice">
     <div class="notice__inner">
@@ -60,98 +139,88 @@
   </div>
 
   <!-- ABOUT -->
-  <section class="sec">
+  <section class="home-sec">
     <div class="container">
-      <div class="sec__grid">
-        <div class="sec__rail">
-          <span class="eyebrow">§ About</span>
-          <h2>데이터 중심 AI 연구그룹</h2>
-          <p>제주대학교 인공지능학과 Data-Centric AI Research Group.</p>
-        </div>
+      <div class="about-grid">
         <div>
-          <div style="max-width:64ch;display:flex;flex-direction:column;gap:16px;">
-            <p style="color:var(--muted);line-height:1.8;">Welcome to DCAL, the Data-Centric AI Research Group in the Dept. of Artificial Intelligence at Jeju National University. Our lab is at the forefront of AI innovation, focusing on advancing intelligent systems through data-driven approaches.</p>
-            <p style="color:var(--muted);line-height:1.8;">우리 연구실은 CNN, RNN, Transformer 등 인공지능 기초 이론에 대한 심층적 이해를 바탕으로, 모델 경량화·양자화·미세조정 등 최신 생성형 AI / Physical AI 기술을 실질적으로 구현하는 데 주력합니다.</p>
-            <p style="color:var(--muted);line-height:1.8;">나아가 데이터·모델·인프라의 자율적 통제와 기술 주권 확보를 지향하는 <b style="color:var(--ink);">소버린 AI(Sovereign AI)</b> 패러다임을 핵심 연구 방향으로 삼아 국내외 AI 생태계의 전략적 가치 제고에 기여하고자 합니다.</p>
-          </div>
+          <p class="eyebrow">§ About</p>
+          <h2>데이터 중심 AI 연구그룹</h2>
+          <p>제주대학교 인공지능학과 Data-Centric AI Research Group. 우리 연구실은 CNN·RNN·Transformer 등 기초 이론에 대한 깊은 이해를 바탕으로, 모델 경량화·양자화·미세조정 등 최신 생성형 AI / Physical AI 기술을 실질적으로 구현합니다.</p>
+          <p>나아가 데이터·모델·인프라의 자율적 통제와 기술 주권 확보를 지향하는 <b>소버린 AI(Sovereign AI)</b> 패러다임을 핵심 방향으로 삼아 국내외 AI 생태계의 전략적 가치 제고에 기여하고자 합니다.</p>
+        </div>
+        <div class="about-img">
+          <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80" alt="Data-Centric AI" onerror="this.style.display='none'" />
         </div>
       </div>
     </div>
   </section>
 
   <!-- RESEARCH AREAS -->
-  <section class="sec sec--alt">
+  <section class="home-sec home-sec--alt">
     <div class="container">
-      <div class="sec__grid">
-        <div class="sec__rail">
-          <span class="eyebrow">§ Research</span>
-          <h2>연구 분야</h2>
-          <p>데이터·모델부터 임바디드·소버린 시스템까지 네 방향. <a href="research.html">정부 과제 보기 →</a></p>
-        </div>
-        <div class="rlist">
-          <div class="ritem">
-            <div class="rnum">01</div>
-            <div>
-              <div class="rtitle">Data-Centric &amp; Generative AI</div>
-              <div class="rdesc">모델 성능을 결정하는 '데이터'에 주목합니다. 고품질 데이터 구축·관리, 생성 모델 기반 데이터 증강·합성·선별 파이프라인으로 소규모 데이터로도 높은 성능을 달성하는 방법론을 연구합니다.</div>
-              <div class="rtags"><span class="tag">Data Curation</span><span class="tag">Synthetic Data</span><span class="tag">Instruction Tuning</span><span class="tag">Data Augmentation</span></div>
-            </div>
+      <div class="home-head">
+        <p class="eyebrow">§ Research</p>
+        <h2>연구 분야</h2>
+        <p>데이터·모델부터 임바디드·소버린 시스템까지 네 방향으로 연구합니다.</p>
+      </div>
+      <div class="rcards">
+
+        <article class="rcard">
+          <div class="rcard__imgwrap"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=80" alt="" onerror="this.style.display='none'" /></div>
+          <div class="rcard__body">
+            <div class="rcard__num">01</div>
+            <div class="rcard__title">Data-Centric &amp; Generative AI</div>
+            <div class="rcard__desc">고품질 데이터 구축·관리, 생성 모델 기반 증강·합성·선별 파이프라인으로 소규모 데이터로도 높은 성능을 달성합니다.</div>
+            <div class="rcard__tags"><span class="tag">Data Curation</span><span class="tag">Synthetic Data</span></div>
           </div>
-          <div class="ritem">
-            <div class="rnum">02</div>
-            <div>
-              <div class="rtitle">Large Language &amp; Multimodal Models</div>
-              <div class="rdesc">GPT, LLaMA 등 대규모 언어 모델의 학습·정렬·경량화를 연구하고, 텍스트·이미지·오디오를 함께 처리하는 멀티모달로 확장합니다. 한국어 특화 LLM과 양자화·LoRA 기반 효율적 파인튜닝을 중점 연구합니다.</div>
-              <div class="rtags"><span class="tag">LLM</span><span class="tag">RLHF / DPO</span><span class="tag">Multimodal</span><span class="tag">Quantization</span><span class="tag">LoRA / PEFT</span></div>
-            </div>
+        </article>
+
+        <article class="rcard">
+          <div class="rcard__imgwrap"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=640&q=80" alt="" onerror="this.style.display='none'" /></div>
+          <div class="rcard__body">
+            <div class="rcard__num">02</div>
+            <div class="rcard__title">Large Language &amp; Multimodal Models</div>
+            <div class="rcard__desc">LLM의 학습·정렬·경량화를 연구하고 멀티모달로 확장합니다. 한국어 특화 LLM과 양자화·LoRA 기반 효율적 파인튜닝을 중점 연구합니다.</div>
+            <div class="rcard__tags"><span class="tag">LLM</span><span class="tag">Quantization</span><span class="tag">LoRA</span></div>
           </div>
-          <div class="ritem">
-            <div class="rnum">03</div>
-            <div>
-              <div class="rtitle">Physical AI — Embodied Intelligence</div>
-              <div class="rdesc">로봇이 언어와 시각적 맥락을 이해하고 물리 세계와 상호작용하는 임바디드 인텔리전스를 연구합니다. LLM 기반 로봇 조작 제어, Sim-to-Real 전이, Human-AI 인터랙션 시스템을 개발합니다.</div>
-              <div class="rtags"><span class="tag">Robotics</span><span class="tag">Embodied AI</span><span class="tag">Human-Robot Interaction</span><span class="tag">Sim-to-Real</span></div>
-            </div>
+        </article>
+
+        <article class="rcard">
+          <div class="rcard__imgwrap"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=640&q=80" alt="" onerror="this.style.display='none'" /></div>
+          <div class="rcard__body">
+            <div class="rcard__num">03</div>
+            <div class="rcard__title">Physical AI — Embodied Intelligence</div>
+            <div class="rcard__desc">로봇이 언어와 시각 맥락을 이해하고 물리 세계와 상호작용하는 임바디드 인텔리전스. LLM 기반 제어와 Sim-to-Real 전이를 연구합니다.</div>
+            <div class="rcard__tags"><span class="tag">Robotics</span><span class="tag">Sim-to-Real</span></div>
           </div>
-          <div class="ritem">
-            <div class="rnum">04</div>
-            <div>
-              <div class="rtitle">Sovereign AI</div>
-              <div class="rdesc">데이터·모델·인프라의 자율적 통제와 기술 주권 확보를 목표로, 온디바이스 추론·연합 학습·프라이버시 보존 기술을 연구합니다. 제주 지역 산업 및 국가 전략 AI 인프라에 기여하는 실용 연구를 추구합니다.</div>
-              <div class="rtags"><span class="tag">On-Device AI</span><span class="tag">Federated Learning</span><span class="tag">Privacy-Preserving AI</span><span class="tag">Edge Inference</span></div>
-            </div>
+        </article>
+
+        <article class="rcard">
+          <div class="rcard__imgwrap"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=640&q=80" alt="" onerror="this.style.display='none'" /></div>
+          <div class="rcard__body">
+            <div class="rcard__num">04</div>
+            <div class="rcard__title">Sovereign AI</div>
+            <div class="rcard__desc">온디바이스 추론·연합 학습·프라이버시 보존 기술로 데이터·모델·인프라의 자율적 통제를 실현합니다. 지역·국가 전략 AI 인프라에 기여합니다.</div>
+            <div class="rcard__tags"><span class="tag">On-Device</span><span class="tag">Federated</span><span class="tag">Edge</span></div>
           </div>
-        </div>
+        </article>
+
       </div>
     </div>
   </section>
 
   <!-- JOIN -->
-  <section class="sec">
+  <section class="home-sec">
     <div class="container">
-      <div class="sec__grid">
-        <div class="sec__rail">
-          <span class="eyebrow">§ Join us</span>
-          <h2>함께 연구하실 분</h2>
-          <p>인공지능·데이터 기반 문제 해결에 관심 있는 학부생 및 대학원 진학 희망자를 모집합니다.</p>
-        </div>
+      <div class="cta-band">
         <div>
-          <div class="cta-band">
-            <div>
-              <h2>DCAL과 함께 AI의 미래를 연구하세요</h2>
-              <p>LLM, Physical AI, Generative AI에 열정을 가진 석·박사 연구원 및 포닥을 모집합니다. Python·머신러닝·딥러닝 경험이 있으면 우대하지만, 성실히 학습하고 연구에 참여할 의지가 있다면 지원 가능합니다.</p>
-            </div>
-            <div style="display:flex;gap:12px;flex-shrink:0;">
-              <a href="people.html" class="btn btn-outline">팀 소개</a>
-              <a href="mailto:gmkim@jejunu.ac.kr" class="btn btn-primary">이메일 문의</a>
-            </div>
-          </div>
-          <div class="rlist" style="margin-top:28px;">
-            <div class="ritem"><div class="rnum">·</div><div class="rdesc" style="margin:0;">인공지능·머신러닝·딥러닝 분야를 본격적으로 공부하고 싶은 학생</div></div>
-            <div class="ritem"><div class="rnum">·</div><div class="rdesc" style="margin:0;">Python 프로그래밍 및 데이터 분석에 관심이 있는 학생</div></div>
-            <div class="ritem"><div class="rnum">·</div><div class="rdesc" style="margin:0;">논문을 읽고 구현하며 연구 역량을 키우고 싶은 학생</div></div>
-            <div class="ritem"><div class="rnum">·</div><div class="rdesc" style="margin:0;">팀원들과 함께 문제를 해결하고 성과를 만들어가고 싶은 학생</div></div>
-          </div>
+          <p class="eyebrow" style="margin-bottom:10px;">§ Join us</p>
+          <h2>DCAL과 함께 AI의 미래를 연구하세요</h2>
+          <p>LLM, Physical AI, Generative AI에 열정을 가진 석·박사 연구원 및 포닥을 모집합니다. Python·머신러닝·딥러닝 경험이 있으면 우대하지만, 성실히 학습하고 연구에 참여할 의지가 있다면 지원 가능합니다.</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-shrink:0;">
+          <a href="people.html" class="btn btn-outline">팀 소개</a>
+          <a href="mailto:gmkim@jejunu.ac.kr" class="btn btn-primary">이메일 문의</a>
         </div>
       </div>
     </div>
