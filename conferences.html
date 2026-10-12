@@ -3,183 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>(function(){try{var t=localStorage.getItem('dcal-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
   <title>Conferences — DCAL</title>
+  <link rel="preload" href="fonts/Pretendard-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/KoPubDotum-Bold.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    /* ---- Page hero (matches other subpages) ---- */
-    .page-hero {
-      padding: 80px 0 64px;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg2);
-    }
-    .page-hero h1 { font-size: clamp(32px, 4vw, 52px); margin-bottom: 12px; }
-    .page-hero p  { font-size: 17px; color: var(--gray2); max-width: 560px; }
-
-    /* ---- Filter + legend ---- */
-    .filter-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
-    .filter-btn {
-      font-size: 13px; font-weight: 600; padding: 7px 16px;
-      border-radius: 6px; border: 1px solid var(--border);
-      background: transparent; color: var(--gray2); cursor: pointer; transition: all 0.2s;
-    }
-    .filter-btn:hover { color: var(--white); border-color: var(--gray2); }
-    .filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
-
-    .conf-legend {
-      display: flex; flex-wrap: wrap; gap: 18px; align-items: center;
-      margin-bottom: 40px; font-size: 12px; color: var(--gray3);
-    }
-    .conf-legend span { display: inline-flex; align-items: center; gap: 8px; }
-    .conf-legend i { width: 16px; height: 3px; border-radius: 2px; display: inline-block; background: var(--gray2); }
-    .conf-legend i.is-urgent { background: var(--accent); }
-    .conf-legend i.is-open   { background: var(--accent2); }
-
-    /* ---- List ---- */
-    .conf-list { border-top: 1px solid var(--border); }
-    .conf-row {
-      display: grid; grid-template-columns: 1fr auto; gap: 40px;
-      padding: 28px 4px; border-bottom: 1px solid var(--border);
-      align-items: start; transition: background 0.2s;
-    }
-    .conf-row:hover { background: rgba(255,255,255,0.015); }
-    .conf-row[hidden] { display: none; }
-
-    .conf-cat {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--gray3); margin-bottom: 10px;
-    }
-    .conf-name { font-size: 19px; font-weight: 700; color: var(--white); line-height: 1.2; display: inline-block; transition: color 0.2s; }
-    a.conf-name:hover { color: var(--accent2); }
-    .conf-full { font-size: 13px; color: var(--gray2); margin-top: 5px; margin-bottom: 16px; }
-
-    .conf-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 13px; color: var(--gray1); margin-bottom: 12px; }
-    .conf-meta span { display: inline-flex; align-items: center; gap: 8px; }
-    .conf-meta svg { width: 14px; height: 14px; color: var(--gray3); }
-
-    .conf-deadlines { font-size: 13px; color: var(--gray2); line-height: 1.85; font-variant-numeric: tabular-nums; }
-    .conf-deadlines b { color: var(--gray1); font-weight: 600; }
-    .conf-deadlines .tba { color: var(--gray3); }
-
-    .conf-side { display: flex; flex-direction: column; align-items: flex-end; text-align: right; min-width: 118px; }
-    .conf-dday { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; color: var(--accent2); font-variant-numeric: tabular-nums; }
-    .conf-dday.is-closed, .conf-dday.is-tba { color: var(--gray3); font-size: 16px; }
-    .conf-ddaycap { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray3); margin-top: 8px; min-height: 12px; }
-    .conf-link {
-      margin-top: 18px; font-size: 12px; font-weight: 600;
-      color: var(--gray2); display: inline-flex; align-items: center; gap: 5px; transition: all 0.2s;
-    }
-    .conf-link:hover { color: var(--accent2); gap: 8px; }
-    .conf-link.is-disabled { color: var(--gray3); pointer-events: none; }
-    .conf-link svg { width: 13px; height: 13px; }
-
-    .conf-empty { display: none; text-align: center; color: var(--gray2); padding: 60px 0; font-size: 15px; }
-    .conf-note { margin-top: 40px; font-size: 12.5px; color: var(--gray3); text-align: center; line-height: 1.8; }
-    .conf-note b { color: var(--gray2); font-weight: 600; }
-
-    @media (max-width: 640px) {
-      .conf-row { grid-template-columns: 1fr; gap: 16px; }
-      .conf-side { align-items: flex-start; text-align: left; }
-    }
-  </style>
 </head>
-<body class="page-body">
+<body>
 
-  <!-- NAV -->
-  <nav class="nav">
+  <header class="nav">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo">
         <span class="nav__logo-main">DCAL</span>
         <span class="nav__logo-sub">Jeju National University</span>
       </a>
-      <ul class="nav__links">
-        <li><a href="research.html">Research</a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <li><a href="conferences.html" class="active">Conferences</a></li>
-        <li><a href="people.html">People</a></li>
-        <li><a href="index.html#contact" class="nav__cta">Contact</a></li>
-        <li><button class="theme-toggle" id="themeToggle" type="button" aria-label="라이트/다크 전환" title="라이트/다크 전환">
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        </button></li>
-      </ul>
+      <nav class="nav__links" aria-label="Main">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="conferences.html" class="active">Conferences</a>
+        <a href="people.html">People</a>
+      </nav>
+      <a href="people.html#contact" class="btn btn--line btn--sm">Contact</a>
     </div>
-  </nav>
+  </header>
 
-  <!-- HERO -->
-  <div class="page-hero">
-    <div class="container">
-      <p class="eyebrow">Academic Calendar</p>
+  <main class="wrap" style="padding-bottom:40px">
+    <section class="page-head">
+      <span class="label">Academic Calendar</span>
       <h1>Conferences</h1>
       <p>Major AI conferences in 2027 with their submission deadlines, ordered by what is due next.</p>
-    </div>
-  </div>
+    </section>
 
-  <section style="background: var(--bg); padding: 60px 0 90px;">
-    <div class="container">
-
-      <!-- FILTER -->
-      <div class="filter-bar anim">
+    <section class="c panel">
+      <div class="filter-bar">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="AIML">General AI · ML</button>
         <button class="filter-btn" data-filter="CV">Computer Vision</button>
         <button class="filter-btn" data-filter="NLP">NLP · Speech</button>
       </div>
-
-      <div class="conf-legend anim">
-        <span><i class="is-open"></i>Deadline open · days remaining</span>
-        <span><i></i>Closed · TBA</span>
-      </div>
-
-      <!-- LIST (rendered by script) -->
-      <div class="conf-list anim" id="confList"></div>
+      <div class="conf-list" id="confList"></div>
       <div class="conf-empty" id="confEmpty">No conferences in this category.</div>
+      <p class="conf-note">Dates follow each venue's official page and may change. For NLP venues, the first deadline refers to the ARR (ACL Rolling Review) deadline.</p>
+    </section>
+  </main>
 
-      <p class="conf-note">
-        Dates follow each venue's official page and may change. For NLP venues, the abstract row refers to the <b>ARR</b> (ACL Rolling Review) deadline.
-      </p>
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer__inner">
-      <div class="footer__brand">
-        <div class="footer__brand-name">DCAL</div>
-        <div class="footer__brand-sub">Data-Centric AI Lab · Jeju National University</div>
-        <address class="footer__address" style="font-style:normal;">
-          No. C109-1, 3rd College of Engineering<br />
-          102, Jejudaehak-ro, Jeju-si, Jeju-do, Republic of Korea (63243)<br />
-          Email: <a href="mailto:gmkim@jejunu.ac.kr" style="color:var(--accent2);">gmkim@jejunu.ac.kr</a>
-        </address>
-      </div>
-      <div class="footer__col">
-        <p class="footer__col-title">Navigation</p>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="research.html">Research</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="conferences.html">Conferences</a></li>
-          <li><a href="people.html">People</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <p class="footer__col-title">Research</p>
-        <ul>
-          <li><a href="research.html">Projects</a></li>
-          <li><a href="publications.html">Papers</a></li>
-          <li><a href="people.html#professor">Professor</a></li>
-          <li><a href="people.html#team">Team</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>Copyright © 2025 Data-Centric AI Lab, Jeju National University. All Rights Reserved.</span>
-      <span>Dept. of Artificial Intelligence</span>
+      <span>© 2025 Data-Centric AI Lab, Jeju National University</span>
+      <span>Dept. of Artificial Intelligence · <a href="mailto:gmkim@jejunu.ac.kr">gmkim@jejunu.ac.kr</a> · (+82) 64-754-3784</span>
+      <span>No. C109-1, 3rd College of Engineering, 102 Jejudaehak-ro, Jeju-si, Jeju-do (63243)</span>
     </div>
   </footer>
 
@@ -356,7 +227,6 @@
     });
   });
   </script>
-  <script src="theme.js"></script>
   <script src="scroll.js"></script>
 </body>
 </html>
