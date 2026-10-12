@@ -93,7 +93,7 @@ svg.nav__logo-sub{display:block;width:100%;}
 .herobar__in{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:0;max-width:calc(var(--max-w) + 0px);padding-top:88px;padding-bottom:150px;}
 .herobar__in>*{max-width:760px;}
 .herobar .label{color:#AEBBDA;}
-.wordmark{font-family:'Plus Jakarta Sans',var(--sans);font-size:clamp(56px,8.4vw,124px);font-weight:700;line-height:1.08;letter-spacing:-0.035em;margin:0 0 0 -0.03em;}
+.wordmark{font-family:'Plus Jakarta Sans',var(--sans);font-size:clamp(48px,7.2vw,104px);font-weight:700;line-height:1.08;letter-spacing:-0.035em;margin:0 0 0 -0.03em;}
 .wordmark .hy{font-family:var(--sans);font-weight:700;padding:0 .02em;}
 .hero__sub{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.28);padding-top:18px;margin-top:22px;max-width:600px;}
 .hero__en{font-family:'Bricolage',var(--sans);font-weight:800;font-size:26px;letter-spacing:-0.01em;}
